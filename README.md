@@ -1,6 +1,6 @@
 # chain-handler
 
-Chainable and Immutable HTTP handler for standard `Request` and `Response`.
+Chainable and immutable HTTP handler for standard `Request` and `Response`.
 
 ## Usage
 
