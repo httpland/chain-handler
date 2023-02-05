@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/httpland/chain-handler/compare/1.0.0-beta.1...1.0.0-beta.2) (2023-02-05)
+
+
+### Features
+
+* **types.ts:** rename types from `NextHandler` to `OptionalHandler` ([f6720cb](https://github.com/httpland/chain-handler/commit/f6720cb85695cf44165f5e14d6a5bfcb4b19d8bc))
+
 # 1.0.0-beta.1 (2023-02-04)
 
 
