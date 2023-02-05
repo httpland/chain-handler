@@ -7,13 +7,16 @@ import { type Handler } from "./deps.ts";
  * Accepts `Request` and the next HTTP handlers.
  */
 export interface ChainableHandler {
-  (request: Request, next: NextHandler): Response | Promise<Response>;
+  (
+    request: Request,
+    next: OptionalHandler,
+  ): Response | Promise<Response>;
 }
 
-/** Next HTTP handler.
- * A new `Request` can be passed to the next handler.
+/** Optional `Request` HTTP handler.
+ * It is possible not to pass the `Request` object.
  */
-export interface NextHandler {
+export interface OptionalHandler {
   (request?: Request): Response | Promise<Response>;
 }
 
