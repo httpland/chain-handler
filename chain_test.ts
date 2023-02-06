@@ -7,7 +7,7 @@ import {
   describe,
   it,
   spy,
-} from "./dev_deps.ts";
+} from "./_dev_deps.ts";
 
 describe("chain", () => {
   it("should return cloned response when handler is not exists", async () => {

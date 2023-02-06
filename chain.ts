@@ -1,7 +1,7 @@
 // Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-import type { Chainable, ChainableHandler, NextHandler } from "./types.ts";
+import type { Chainable, ChainableHandler, OptionalHandler } from "./types.ts";
 
 /** Immutable chain builder for HTTP handlers.
  *
@@ -123,7 +123,7 @@ export function chain(
 
     if (!first) return response.clone();
 
-    const nextHandler: NextHandler = async (nextRequest = request) =>
+    const nextHandler: OptionalHandler = async (nextRequest = request) =>
       (await run(nextRequest.clone(), response.clone(), ...rest)).clone();
 
     return (await first(request.clone(), nextHandler)).clone();
