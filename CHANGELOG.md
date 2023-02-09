@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/httpland/chain-handler/compare/1.0.0...1.1.0) (2023-02-09)
+
+
+### Features
+
+* **types.ts:** split interface and export types ([02b49b9](https://github.com/httpland/chain-handler/commit/02b49b99cac229c1dc9ed7c64690df6c0fbe1e1e))
+
 # [1.1.0-beta.1](https://github.com/httpland/chain-handler/compare/1.0.0...1.1.0-beta.1) (2023-02-08)
 
 
