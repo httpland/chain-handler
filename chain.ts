@@ -1,7 +1,12 @@
 // Copyright 2023-latest the httpland authors. All rights reserved. MIT license.
 // This module is browser compatible.
 
-import type { Chainable, ChainableHandler, OptionalHandler } from "./types.ts";
+import type {
+  Chainable,
+  ChainableHandler,
+  OptionalHandler,
+  Responsive,
+} from "./types.ts";
 
 /** Immutable chain builder for HTTP handlers.
  *
@@ -38,7 +43,7 @@ import type { Chainable, ChainableHandler, OptionalHandler } from "./types.ts";
  * assertEquals(response.headers.get("server"), "deno")
  * ```
  */
-export class Chain implements Chainable {
+export class Chain implements Chainable, Responsive {
   #handlers: readonly ChainableHandler[] = [];
 
   /**
@@ -48,8 +53,15 @@ export class Chain implements Chainable {
     this.#handlers = init ?? [];
   }
 
-  /**
-   * @param handlers
+  /** Register chainable HTTP handlers.
+   * @param handlers HTTP chainable handlers.
+   *
+   * @example
+   * ```ts
+   * import { Chain } from "https://deno.land/x/chain_handler@$VERSION/mod.ts";
+   *
+   * const chain = new Chain().next((request, next) => next(), () => new Response("hello"))
+   * ```
    */
   readonly next = (...handlers: readonly ChainableHandler[]): this => {
     this.#handlers = this.#handlers.concat(handlers);
@@ -57,7 +69,8 @@ export class Chain implements Chainable {
     return this;
   };
 
-  /**
+  /** All registered handlers.
+   *
    * @example
    * ```ts
    * import { Chain } from "https://deno.land/x/chain_handler@$VERSION/mod.ts";
@@ -73,6 +86,16 @@ export class Chain implements Chainable {
   /**
    * @param request `Request` object. The `Request` is cloned and not mutate.
    * @param defaultResponse The default `Response` object. Change the response when the {@link handlers} is empty.
+   *
+   * @example
+   * ```ts
+   * import { Chain } from "https://deno.land/x/chain_handler@$VERSION/mod.ts";
+   * import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+   *
+   * const chain = new Chain()
+   * const response = await chain.respond(new Request("http://localhost"))
+   * assertEquals(response.status, 404)
+   * ```
    */
   readonly respond = (
     request: Request,

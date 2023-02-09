@@ -24,10 +24,12 @@ export interface OptionalHandler {
 export interface Chainable {
   /** Register chainable HTTP handlers. */
   readonly next: (...handlers: readonly ChainableHandler[]) => this;
+}
 
+/** HTTP responsive API.
+ * Accept `Request` and respond `Response`.
+ */
+export interface Responsive {
   /** Respond `Response` from `Request`. */
   readonly respond: Handler;
-
-  /** All registered handlers. */
-  readonly handlers: readonly ChainableHandler[];
 }
